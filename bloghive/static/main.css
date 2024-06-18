@@ -1,0 +1,485 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=PT+Sans+Narrow:wght@700&family=Poppins&family=Tilt+Prism&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
+.container{
+    height: 300px;
+    position: relative;
+    width: 100%;
+}
+
+.phrase{
+    display: inline-block;
+    font-family: 'Times New Roman', Times, serif;
+    overflow: hidden;
+    white-space:nowrap;
+    font-size: 80px;
+    font-weight: 600;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.maincontent{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: space-between;
+}
+
+.post{
+    width: 70%;
+    height: 100%;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+    box-shadow: 0px 0px 4px hsla(0, 0%, 70%);
+    transition: all 0.15s ease-in-out;
+}
+
+.post:hover{
+    transition: all 0.15s ease-in-out;
+    box-shadow: 0px 0px 7px hsla(0, 0%, 40%);
+}
+
+.post h1{
+    font-family: Montserrat;
+    padding-top: 20px;
+    padding-left: 20px;
+    line-height: 35px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+}
+
+.post h1 a{
+    font-family: Montserrat;
+    font-size: 30px;
+    letter-spacing: 1px;
+    color: black;
+}
+
+.post h1 a:hover,
+.username:hover{
+    color: #0a8daa;
+}
+
+.usericon{
+    padding-left: 20px;
+}
+
+.usericon a{ 
+    padding-left: 10px;
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+}
+
+.dateicon a{
+    padding-left: 10px;
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    font-weight: 200;
+}
+
+.preview-text{
+    padding: 20px;
+    padding-top: 25px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.page_container{
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    height: 130px;
+    margin-top: -20px;
+}
+
+.paging{
+    align-items: center;
+}
+
+.paging .button2{
+    font-size: 20px;
+    border-radius: 15px;
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px 15px 10px 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: black;
+    transition: all 0.3s ease-in-out;
+}
+
+.paging .button2:hover{
+    background-color: black;
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.paging .button1{
+    font-size: 20px;
+    border-radius: 15px;
+    border: 1px solid black;
+    background-color: black;
+    margin: 10px;
+    padding: 10px 15px 10px 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    transition: all 0.3s ease-in-out; 
+}
+
+.user{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 70px;
+    justify-content: center;
+}
+
+.username-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 90%;
+}
+
+.php-container{
+    position: relative;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.profile-pic{
+    position: absolute;
+    max-width: 150px;
+    background-color: hsl(0, 0%, 90%);
+    border-radius:5%;
+    opacity: 1;
+    transition: .3s ease;
+    backface-visibility: hidden;
+}
+
+#uploadbtn{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30%;
+    cursor: pointer;
+    color:#0a8daa;
+    top: 80%;
+    left: 80%;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 1px 1px 7px gray;
+}
+
+.camera-icon{
+    position: relative;
+    max-width: 30px;
+    max-height: 30px;
+    color: black;
+}
+
+#file{
+    display: none;
+}
+
+.demo-2{
+    margin-left: 30px;
+}
+
+.demo{
+    display: flex;
+}
+
+.usericon-title{
+    font-size: 25px;
+}
+
+.username-title{
+    display: inline;
+    font-family: monospace;
+    font-size: 30px;
+    font-weight: 600;
+    color: black;
+    letter-spacing: 1px;
+}
+
+.follow{
+    margin-left: 20px;
+}
+
+.unfollow{
+    margin-left: 20px;
+}
+
+.user-details{
+    margin-top: 20px;
+}
+
+.user-details p{
+    display: inline;
+    font-family: Montserrat;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.about{
+    margin-top: 30px;
+    width: 90%;
+}
+
+.head{
+    display: block;
+    margin-top: 10px;
+    font-family: monospace;
+    font-size: 25px;
+    font-weight: 600;
+    color: black;
+    letter-spacing: 1px;
+}
+
+.about-content{
+    font-family: Montserrat;
+    font-size: 15px;
+    padding-top: 10px;
+}
+
+.posts-heading{
+    width: 90%;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-family: monospace;
+    font-size: 25px;
+    font-weight: 600;
+    color: black;
+}
+
+.no-post{
+    align-items: center;
+    margin-top: 150px;
+    margin-bottom: 20px;
+    font-family: monospace;
+    font-size: 25px;
+    font-weight: 600;
+    color: black;
+}
+
+@media (orientation:portrait){
+    .post{
+        width: 95%;
+    }
+}
+
+@media all and (max-width: 1024px){
+    .phrase{
+        font-size: 60px;
+    }
+    .container{
+        height: 250px;
+    }
+}
+
+@media all and (max-width: 800px){    
+    .phrase{
+        font-size: 50px;
+    }
+    .container{
+        height: 200px;
+    }
+    .post h1 a{
+        font-size: 25px;
+    }
+    .post h1{
+        line-height: 25px;
+    }
+    .paging .button2{
+        font-size: 15px;
+    }
+    .paging .button1{
+        font-size: 15px;
+    }
+}
+
+@media all and (max-width: 650px){    
+    .phrase{
+        font-size: 35px;
+        text-align: center;
+    }
+    .container{
+        height: 150px;
+    }
+    .post{
+        margin-bottom: 15px;
+    }
+    .post h1 a{
+        font-size: 20px;
+    }
+    .post h1{
+        line-height: 20px;
+        padding: 10px;
+    }
+    .usericon{
+        padding-left: 10px;
+        font-size: 12px;
+    }
+    .usericon a{
+        font-size: 12px;
+    }
+    .dateicon{
+        font-size: 12px;
+    }
+    .dateicon a{
+        font-size: 12px;
+    }
+    .preview-text{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        font-size: 12px;
+    }
+}
+
+@media all and (max-width: 530px){    
+    .post h1 a{
+        font-size: 15px;
+    }
+    .post h1{
+        line-height: 15px;
+        padding: 10px;
+        padding-left: 15px;
+    }
+    .usericon{
+        padding-left: 15px;
+        font-size: 12px;
+    }
+    .usericon a{
+        font-size: 12px;
+    }
+    .dateicon{
+        font-size: 12px;
+    }
+    .dateicon a{
+        font-size: 12px;
+    }
+    .preview-text{
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 15px;
+        font-size: 12px;
+    }
+    .paging .button2{
+        font-size: 11px;
+        border-radius: 12px;
+    }
+    .paging .button1{
+        font-size: 11px;
+        border-radius: 12px;
+    }
+    .usericon-title{
+        font-size: 20px;
+    }
+    .username-title{
+        font-size: 25px;
+    }
+    .user-details{
+        margin-top: 10px;
+    }
+    .user-details p{
+        font-size: 15px;
+    }
+    .about{
+        margin-top: 15px;
+    }
+    .head{
+        font-size: 20px;
+    }
+    .about-content{
+        font-size: 12px;
+        
+    }
+    .posts-heading{
+        font-size: 20px;
+    }
+    
+}
+
+@media all and (max-width: 450px){    
+    .phrase{
+        font-size: 30px;
+        text-align: center;
+    }
+    .container{
+        height: 100px;
+    }
+}
+
+@media all and (max-width: 400px){    
+    .phrase{
+        font-size: 25px;
+        text-align: center;
+    }
+    .container{
+        height: 80px;
+    }
+    .dateicon{
+        padding-left: 5px;
+    }
+    .post h1{
+        line-height: 11px;
+        padding-bottom: 10px;
+    }
+    .post h1 a{
+        font-size: 13px;
+    }
+    .preview-text{
+        font-size: 11px;
+    }
+}
+
+@media all and (max-width: 330px){    
+    .phrase{
+        font-size: 20px;
+        text-align: center;
+    }
+    .container{
+        height: 60px;
+    }
+    .usericon{
+        font-size: 10px;
+    }
+    .dateicon{
+        display: block;
+        padding-top: 5px;
+        padding-left: 15px;
+        font-size: 10px;
+    }
+    .usericon a{
+        font-size: 10px;
+    }
+    .dateicon a{
+        font-size: 10px;
+    }
+    .post h1{
+        line-height: 7px;
+        padding-bottom: 10px;
+    }
+    .post h1 a{
+        font-size: 11px;
+    }
+    .preview-text{
+        font-size: 10px;
+    }
+
+}

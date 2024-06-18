@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+
+{% block sheetcontent %}
+<link rel="stylesheet" href="/static/main.css">
+<style>
+    .post{
+        width: 90%;
+    }
+
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#file').on('change', function() {
+            $('#uploadForm').submit();
+        });
+    });
+</script>
+
+{% endblock %}
+
+{% block content %}
+<div class="user">
+    <div class="username-container">
+        <div class="php-container">
+            <img class="profile-pic" src="data:image/jpeg;base64,{{ image_file }}">
+            <form id="uploadForm" enctype="multipart/form-data" action="/upload_pic" method="post">
+                <input type="file" name="file" id="file" accept=".jpg, .jpeg, .png">
+            </form>
+            {% if user == current_user %}
+                <label for="file" id="uploadbtn"><img class="camera-icon" src="{{ url_for('static', filename='images/camera.png') }}"></label>
+            {% endif %}
+        </div>
+        <div class="demo-2">
+            <div class="demo">
+                <h1 class="username-title">{{user.username}}</h1>
+                {% if logged_in %}
+                    {% if current_user != user %}
+                        {% if not current_user.is_following(user) %}
+                            <a class="follow" href="{{ url_for('users.follow', username=user.username) }}">
+                                <button class="follow_button"><p class="button-text">Follow</p></button>
+                            </a>
+                            {% else %}
+                            <a class="unfollow" href="{{ url_for('users.unfollow', username=user.username) }}">
+                                <button class="unfollow_button"><p class="button-text">Unfollow</p></button>
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            </div>
+    
+    <div class="user-details">
+        <p>{{ user.followers.count() }} Followers</p>
+        <p>{{ user.followed.count() }} Following</p>
+    </div>
+</div>
+</div>
+    {% if user.about != None and user.about != "" %}
+        <div class="about">
+            <h1 class="head">About</h1>
+            <p class="about-content">{{user.about}}</p>
+        </div>
+    {% endif %}
+</div>
+
+<div class="maincontent">
+    
+    <h1 class="posts-heading">Posts</h1>
+
+    {% for post in posts.items %}
+    <div class="post">
+
+        <div class="postpreview">
+            <h1><a href="{{ url_for('posts.post', post_id=post.id) }}" class="title">{{post.title}}</a></h1>
+            <i class="far fa-user usericon"><a class="username" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{post.author.username}}</a></i>
+            &nbsp;
+            <i class="fa-solid fa-calendar-days dateicon"><a>{{time_ago(post.date_posted)}}</a></i>
+            {% if post.content|length > 500 %}
+                    {% set content_copy = post.content[:500] + "..." %}
+            {% else %}
+                    {% set content_copy = post.content %}
+            {% endif %}
+
+            {% if content_copy %}
+                <p class="preview-text">
+                    {% for line in content_copy.split('\n') %}
+                        {{line}}<br>
+                    {% endfor %}
+                </p>
+            {% else %}
+                <p class="preview-text">{{content_copy}}</p>
+            {% endif %}
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+<div class="page_container">
+    <span class="paging">
+        {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=1) %}
+            {% if page_num %}
+                {% if posts.page == page_num %}
+                    <a class="button1">{{page_num}}</a>
+                {% else %}
+                    <a class="button2"
+                       href=" {{ url_for('users.user_posts', username=user.username, page = page_num)}}">{{page_num}}</a>
+                {% endif %}
+            {% else %}
+                ...
+            {% endif %}
+        {% endfor %}
+    </span>
+</div>
+
+{% endblock %}

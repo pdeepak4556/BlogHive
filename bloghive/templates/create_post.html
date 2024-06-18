@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block sheetcontent %}
+<link rel="stylesheet" href="/static/create_post.css">
+{% endblock %}
+
+{% block content %}
+<div class="update">
+  <h1>{{title}}</h1>
+  {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          {% for message in messages %}
+              <div class="alert">
+                  {{ message }}
+              </div>
+          {% endfor %}
+      {% endif %}
+  {% endwith %}
+
+  <form method="post" action="">
+      {{ form.hidden_tag() }}
+
+      <div class="txt_field">
+        {{ form.title }}
+      </div>
+
+      <div class="invalid">
+      {% if form.title.errors %}
+          {% for error in form.title.errors %}
+              <p>{{ error }}</p>
+          {% endfor %}
+      {% endif %}
+      </div>
+
+      <div class="content_field">
+        {{ form.content }}
+      </div>
+
+      <div class="invalid">
+      {% if form.content.errors %}
+          {% for error in form.content.errors %}
+              <p>{{ error }}</p>
+          {% endfor %}
+      {% endif %}
+      </div>
+
+    {% if role=="create_post" %}
+    <div class="submit-buttons">
+      <input type="submit" name="action" value="{{button_text_2}}">
+      <input type="submit" name="action" value="{{button_text_1}}">
+    </div>
+    {% else %}
+      <div class="submit-buttons">
+        <input type="submit" value="{{button_text}}">
+      </div>
+    {% endif %}
+
+  </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='navbar.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <script>
+    function onClick(event) {
+        var divs = document.getElementById("content");
+        divs.classList.toggle("show");
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+    var divv = document.getElementById("navbar");
+
+    function addShadowOnScroll() {
+        if (window.scrollY > 0) {
+        divv.classList.add("shadow");
+        } else {
+        divv.classList.remove("shadow");
+        }
+    }
+
+    window.addEventListener("scroll", addShadowOnScroll);
+    });
+
+    document.addEventListener('click', function(event) {
+    var content = document.getElementById("content");
+    var clicks = document.getElementById("clicks");
+    
+    if (!clicks.contains(event.target) && !content.contains(event.target)) {
+      content.classList.remove("show");
+    }
+  });
+</script>
+
+    {% block sheetcontent %}{% endblock %}
+
+    {% if title %}
+    <title>BlogSpot - {{ title }}</title>
+    {% else %}
+    <title>BlogSpot</title>
+    {% endif %}
+
+</head>
+<body>
+<nav class="navbar" id="navbar">
+    <div class="logo"><a href="{{ url_for('main.home') }}">Blog<span>Hive</span></a></div>
+    <div class="button_class">
+
+        {% if current_user.is_authenticated %}
+        <a class="new_post" href="/post/new">
+            <button class="new_post_button"><p class="button-text">Create new post</p></button>
+        </a>
+        <a class="profile" href="{{ url_for('users.user_posts', username=current_user.username) }}">
+            <button class="profile_button"><p class="button-text">Profile</p></button>
+        </a>
+        <a class="account" href="{{ url_for('users.account') }}">
+            <button class="account_button"><p class="button-text">Account</p></button>
+        </a>
+        <a class="logout" href="/logout">
+            <button class="logout"><p class="button-text">Log out</p></button>
+        </a>
+        {% else %}
+        <a class="login" href="/login">
+            <button class="signin"><p class="button-text">Log in</p></button>
+        </a>
+        <a class="signup" href="/register">
+            <button class="signup_button"><p class="button-text">Sign up</p></button>
+        </a>
+        {% endif %}
+    </div>
+    <div class="dropdown-container">
+        <a onclick="onClick()" class="menu" id="clicks"><i class="fa-solid fa-bars" style="color: #000000;"></i></a>
+        <div id="content" class="dropdown-content">
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('posts.new_post') }}">Create new post</a>
+            <a href="{{ url_for('users.user_posts', username=current_user.username) }}">Profile</a>
+            <a href="{{ url_for('users.account') }}">Account</a>
+            <a href="/logout">Log out</a>
+            {% else %}
+            <a href="{{ url_for('users.login') }}">Log in</a>
+            <a href="{{ url_for('users.register') }}">Sign up</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+{% block content %}{% endblock %}
+</body>
+</html>

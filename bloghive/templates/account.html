@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block sheetcontent %}
+<link rel="stylesheet" href="/static/account.css">
+{% endblock %}
+
+{% block content %}
+<div class="update">
+  <h1>Account Info</h1>
+  {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          {% for message in messages %}
+              <div class="alert">
+                  {{ message }}
+              </div>
+          {% endfor %}
+      {% endif %}
+  {% endwith %}
+
+  <form method="post" action="">
+      {{ form.hidden_tag() }}
+
+      <div class="txt_field">
+        {{ form.username }}
+      </div>
+
+      <div class="invalid">
+      {% if form.username.errors %}
+          {% for error in form.username.errors %}
+              <p>{{ error }}</p>
+          {% endfor %}
+      {% endif %}
+      </div>
+
+      <div class="txt_field">
+          {{ form.email }}
+      </div>
+
+      <div class="invalid">
+      {% if form.email.errors %}
+          {% for error in form.email.errors %}
+              <p>{{ error }}</p>
+          {% endfor %}
+      {% endif %}
+      </div>
+
+      <div class="about_field">
+        {{ form.about }}
+    </div>
+
+    <div class="invalid">
+    {% if form.about.errors %}
+        {% for error in form.about.errors %}
+            <p>{{ error }}</p>
+        {% endfor %}
+    {% endif %}
+    </div>
+
+      <input type="submit" value="Update">
+  </form>
+</div>
+
+{% endblock %}

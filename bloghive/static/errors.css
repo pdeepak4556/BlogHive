@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins&display=swap');
+
+.new_post_button{
+    width: 150px;
+}
+
+.content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+h1{
+    margin: 40px;
+    text-align: center;
+    font-size: 50px;
+    font-family: Montserrat;
+}
+
+.message{
+    margin: 40px;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 20px;
+}

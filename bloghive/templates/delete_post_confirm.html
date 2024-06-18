@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block sheetcontent %}
+<link rel="stylesheet" href="/static/login.css">
+{% endblock %}
+
+{% block content %}
+    <div class="center">
+        <h1>Confirm Delete</h1>
+
+        <p class="confirmation">Do you want to delete the post?</p>
+
+        <div class="confirm_buttons">
+            <a href="{{url_for('posts.delete', post_id=post.id)}}"><button class="confirm">Yes</button></a>
+            <a href="{{url_for('posts.post', post_id=post.id)}}"><button class="confirm">No</button></a>
+        </div>
+    </div>
+{% endblock %}

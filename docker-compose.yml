@@ -1,0 +1,11 @@
+version: '3'
+services:
+  web:
+    build: .
+    image: pdeepak4556/bloghive:2.0
+    ports:
+      - "5000:80"
+    volumes:
+      - ./bloghive:/app/bloghive
+    env_file:
+      - var.env

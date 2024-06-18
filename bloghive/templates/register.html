@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block sheetcontent %}
+<link rel="stylesheet" href="/static/login.css">
+{% endblock %}
+
+{% block content %}
+<div class="header">
+    <div class="center">
+        <h1>Sign up</h1>
+        <form method="post" action="">
+            {{ form.hidden_tag() }}
+            <span class="space"></span>
+            <div class="txt_field">
+                {{ form.username }}
+            </div>
+
+            <div class="invalid">
+                {% if form.username.errors %}
+                {% for error in form.username.errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="txt_field">
+                {{ form.email }}
+            </div>
+
+            <div class="invalid">
+                {% if form.email.errors %}
+                {% for error in form.email.errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="txt_field">
+                {{ form.password }}
+            </div>
+
+            <div class="invalid">
+                {% if form.password.errors %}
+                {% for error in form.password.errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="txt_field">
+                {{ form.confirm_password }}
+            </div>
+
+            <div class="invalid">
+                {% if form.confirm_password.errors %}
+                {% for error in form.confirm_password.errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+                {% endif %}
+            </div>
+
+            <input type="submit" value="Sign up">
+
+            <div class="signup_link"> Already have an account?
+                <a href="{{ url_for('users.login') }}">Sign in</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

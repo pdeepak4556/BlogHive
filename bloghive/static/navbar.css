@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins&family=Tilt+Prism&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+}
+
+
+.navbar{
+    position: sticky;
+    top:0px;
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    letter-spacing: 5px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    transition: all 0.2s ease-in-out;
+    z-index: 1;
+}
+
+.shadow{
+    box-shadow: 0px 1px 10px hsl(0, 0%, 90%);
+    transition: all 0.2s ease-in-out;
+}
+
+.logo a{
+    font-family: 'Tilt Prism';
+    color: black;
+    cursor: pointer;
+    font-size: 40px;
+    font-weight: 700;
+    padding-left: 30px;
+}
+
+.logo a span{
+    color: #0daed2;
+    color: #ed9121;
+}
+
+button{
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.button_class a{
+    padding-right: 5px;
+}
+
+.button_class{
+    padding-right: 25px;
+}
+
+.button-text{
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 15px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+button:hover{
+    background-color: black;
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.dropdown-container{
+    display: none;
+}
+
+.menu{
+    font-size: 25px;
+    margin-right: 25px;
+}
+
+.dropdown-content{
+    position: absolute;
+    right: 20px;
+    top: 60px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px gray;
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+.dropdown-content a{
+    display: block;
+    padding: 20px;
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: 0px;
+    color: black;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.dropdown-content a:hover{
+    background-color: hsl(0, 0%, 90%);
+    transition:all 0.2s ease-in-out;
+}
+
+
+@media all and (max-width: 1000px){    
+    .navbar{
+        letter-spacing: 5px;
+        padding-bottom: 8px;
+        padding-top: 8px;
+    }
+    
+    .logo a{
+        font-size: 35px;
+        font-weight: 700;
+        padding-left: 20px;
+    }
+    .button-text{
+        font-size: 13px;
+    }
+    .button_class{
+        padding-right: 5px;
+    }
+}
+
+@media all and (max-width: 800px){    
+    .navbar{
+        letter-spacing: 5px;
+        padding-bottom: 8px;
+        padding-top: 8px;
+    }
+    
+    .logo a{
+        font-size: 30px;
+        font-weight: 700;
+        padding-left: 15px;
+    }
+    .button-text{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        font-size: 12px;
+    }
+    .button_class{
+        padding-right: 5px;
+    }
+}
+
+@media (orientation: portrait){
+    .button_class{
+        display: none;
+    }
+    .dropdown-container{
+        display: block;
+    }
+}

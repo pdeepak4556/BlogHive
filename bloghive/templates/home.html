@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block sheetcontent %}
+<link rel="stylesheet" href="/static/main.css">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <span class="phrase">Explore, Engage, Enlighten!</div>
+    </div>
+
+    <div class="maincontent">
+        
+        {% for post in posts.items %}
+        <div class="post">
+            <h1><a href="{{ url_for('posts.post', post_id=post.id) }}" class="title">{{post.title}}</a></h1>
+            <i class="far fa-user usericon"><a class="username" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{post.author.username}}</a></i>
+            &nbsp;
+            <i class="fa-solid fa-calendar-days dateicon"><a>{{time_ago(post.date_posted)}}</a></i>
+            {% if post.content|length > 500 %}
+                {% set content_copy = post.content[:500] + "..." %}
+            {% else %}
+                {% set content_copy = post.content %}
+            {% endif %}
+
+            {% if content_copy %}
+                <p class="preview-text">
+                {% for line in content_copy.split('\n') %}
+                    {{line}}<br>
+                {% endfor %}
+                </p>
+            {% else %}
+                <p class="preview-text">{{content_copy}}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="page_container">
+    <span class="paging">
+        {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=1) %}
+            {% if page_num %}
+                {% if posts.page == page_num %}
+                    <a class = "button1">{{page_num}}</a>
+                {% else %}
+                    <a class = "button2" href=" {{ url_for('main.home', page = page_num)}}">{{page_num}}</a>
+                {% endif %}
+            {% else %}
+                ...
+            {% endif %}
+        {% endfor %}
+    </span>
+    </div>
+    
+{% endblock %}

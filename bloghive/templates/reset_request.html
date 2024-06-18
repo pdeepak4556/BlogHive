@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block sheetcontent %}
+<link rel="stylesheet" href="/static/login.css">
+{% endblock %}
+
+{% block content %}
+    <div class="center">
+        <h1>Send Email</h1>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+
+        <span class="span-gap"></span>
+        <form method="post" action="">
+            {{ form.hidden_tag() }}
+
+            <div class="txt_field">
+                {{ form.email }}
+            </div>
+
+            <div class="invalid">
+            {% if form.email.errors %}
+                {% for error in form.email.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+            </div>
+
+            <input type="submit" value="Send Email">
+        </form>
+    </div>
+{% endblock %}

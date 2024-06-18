@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+
+{% block sheetcontent %}
+<link rel="stylesheet" href="/static/post.css">
+{% endblock %}
+{% block content %}
+
+<div class="post">
+
+    <h1 class="title">{{post.title}}</h1>
+
+    <i class="far fa-user usericon"><a class="username"
+                                       href="{{ url_for('users.user_posts', username=post.author.username) }}">{{post.author.username}}</a></i>
+    &nbsp;
+    <span class="gap"></span>
+    <i class="fa-solid fa-calendar-days dateicon"><a>Posted - {{ time_ago(post.date_posted) }}</a></i>
+    <i class="fa-solid fa-calendar-days dateicon"><a>Last updated - {{ time_ago(post.date_updated) }}</a></i>
+    <div class="post-buttons">
+        {% if post.author == current_user %}
+            <a href="{{ url_for('posts.update_post', post_id=post.id) }}">
+                <button class="update">Update</button>
+            </a>
+            <a href="{{ url_for('posts.delete_post_confirm', post_id=post.id) }}">
+                <button class="delete_confirmation">Delete</button>
+            </a>
+        {% endif %}
+    </div>
+    <div class="like-container">
+        {% if current_user!=post.author %}
+            {% if liked==True %}
+                <a href="{{url_for('posts.like', post_id = post.id)}}"><i class="fa-solid fa-thumbs-up"></i></a>
+                <p class="counter">{{post.likes|length}}</p>
+                <a href="{{url_for('posts.dislike', post_id = post.id)}}"><i class="fa-regular fa-thumbs-down"></i></a>
+                <p class="counter">{{post.dislikes|length}}</p>
+            {% elif disliked==True %}
+                <a href="{{url_for('posts.like', post_id = post.id)}}"><i class="fa-regular fa-thumbs-up"></i></a>
+                <p class="counter">{{post.likes|length}}</p>
+                <a href="{{url_for('posts.dislike', post_id = post.id)}}"><i class="fa-solid fa-thumbs-down"></i></a>
+                <p class="counter">{{post.dislikes|length}}</p>
+            {% else %}
+                <a href="{{url_for('posts.like', post_id = post.id)}}"><i class="fa-regular fa-thumbs-up"></i></a>
+                <p class="counter">{{post.likes|length}}</p>
+                <a href="{{url_for('posts.dislike', post_id = post.id)}}"><i class="fa-regular fa-thumbs-down"></i></a>
+                <p class="counter">{{post.dislikes|length}}</p>
+            {% endif %}
+        {% else %}
+            <i class="fa-solid fa-thumbs-up"></i>
+            <p class="counter">{{post.likes|length}}</p>
+            <i class="fa-solid fa-thumbs-down"></i>
+            <p class="counter">{{post.dislikes|length}}</p>
+        {% endif %}
+    </div>
+    {% if post.content %}
+    <p class="preview-text">
+        {% for line in post.content.split('\n') %}
+            {{line}}<br>
+        {% endfor %}
+    </p>
+    {% else %}
+    <p class="preview-text">{{post.content}}</p>
+    {% endif %}
+</div>
+
+<div class="comment-section" id="comment-section">
+    <div class="comments-posting">
+        <h1 class="comments-title">Comments</h1>
+        <div class="form">
+            <form method="post" action="" id="comment-form">
+                {{ form.hidden_tag() }}
+                <div class="txt_field">
+                    {{ form.comment }}
+                </div>
+                <input type="submit" value="Post">
+            </form>
+        </div>
+    </div>
+    {% for comment in post.comments %}
+    <div class="full-comments">
+        <div class="comment-header">
+            <div class="left-side">
+                <img class="profile-pic" src="data:image/jpeg;base64,{{ image_data.get(comment.user.id) }}">
+                <a class="comment-username" href="{{ url_for('users.user_posts', username=comment.user.username) }}">{{comment.user.username}}</a>
+                <a class="time">said {{ time_ago(comment.date_posted) }}</a>
+            </div>
+            {% if comment.user==current_user %}
+                <div class="right-side">
+                    <a href="{{ url_for('posts.delete_comment', comment_id=comment.id) }}" class="trashcan"><i class="fa-solid fa-trash-can trashcan"></i></a>
+                </div>
+            {% endif %}
+        </div>
+        <div class="comment-content">
+            <p class="comment-content">{{ comment.content }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
